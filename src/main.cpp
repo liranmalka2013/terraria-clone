@@ -1,25 +1,32 @@
 #include <raylib.h>
-#include "Game/Game.h"
-
+#include "Game.h"
+#include "consts.h"
 int main() 
 {
-    const Color darkGreen = {20, 160, 133, 255};
+    // const Color darkGreen = {20, 160, 133, 255};
     
-    constexpr int screenWidth = 800;
-    constexpr int screenHeight = 600;
+    constexpr int screenWidth = WIN_WIDTH;
+    constexpr int screenHeight = WIN_HEIGHT;
     
-    Game game = Game();
+    GameManger* game = new GameManger();
 
+    
     InitWindow(screenWidth, screenHeight, "Terraria");
-    SetTargetFPS(60); 
+    SetTargetFPS(60);
+
     while (!WindowShouldClose())
     {
+        game->handleInputs();
+        game->update();
         
         BeginDrawing();
-        ClearBackground(darkGreen);
-        game.draw();
+        ClearBackground(BLACK);
+
+        game->draw();
+        
         EndDrawing();
     }
-    
+
+    delete game;
     CloseWindow();
 }
