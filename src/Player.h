@@ -8,16 +8,20 @@
 typedef struct  Player
 {
     Vector2 pos;
-    int vel;
+    Vector2 size;
+
+    Vector2 vel;
     int dir;
     bool canJump;
+    bool isJumping;
 } Player;
 
-Player* InitPlayer(Vector2 pos);
+Player* InitPlayer(Vector2 pos, Vector2 size);
 Player* InitPlayer();
 
-void UpdatePlayer(Player& player, std::vector<Rectangle> collidables);
+void UpdatePlayer(Player* player, std::vector<Rectangle> collidables);
 void DrawPlayer(Player& player);
 void UpdatePlayerCamera();
 void HandlePlayerInputs(Player* player); 
-float getDistanceFromGridEdge(int dir, float pos);
+int getPositionOfSnappingLineX(int dir, float pos, float sizeInAxis);
+int getPositionOfSnappingLineY(int dir, float pos, float sizeInAxis);

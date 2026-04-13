@@ -1,7 +1,10 @@
 #include <raylib.h>
-#include <vector>
 #include "consts.h"
 #include "Player.h"
+#include "GridUtils.h"
+#include "Voxel.h"
+
+using std::vector;
 
 class GameManger {
 public:
@@ -13,5 +16,5 @@ public:
     void update();
 private:
     Player* player;
-    std::vector<Rectangle> blocks;    
+    std::vector<Voxel> grid;    
 };
