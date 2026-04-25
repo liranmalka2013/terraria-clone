@@ -1,11 +1,34 @@
+#pragma once
+
+#include <cstdint>
+
 #include "Player.h"
-#include "Voxel.h"
+#include "Consts.h"
 
 using std::vector;
 
-Vector2 GridIndexToWorldCoords(Vector2 gridIndex);
-Vector2 WorldCoordsToGridIndex(Vector2 worldCoords);
+typedef struct GridCoord
+{
+    int x;
+    int y;
+} GridCoord;
 
-std::vector<Rectangle>  GetSurroundingVoxels(Player* player, std::vector<Rectangle> grid);
+enum class VoxelType : uint8_t {
+    air,
+    grass,
+};
 
-std::vector<Voxel> InitializeGrid();
+typedef struct Voxel
+{
+    VoxelType type;
+    uint8_t isCollidable;
+} Voxel;
+
+std::vector<Voxel> InitializeGridChunk();
+void drawChunk(std::vector<Voxel> chunk);
+void DrawVoxel(GridCoord coord, Voxel voxel);
+
+GridCoord GetGridCoordsFromFlatIndex(int index);
+int GetFlatIndexFromGridCoords(GridCoord coords);
+
+// std::vector<Rectangle>  GetSurroundingVoxels(Player* player, std::vector<Rectangle> grid);

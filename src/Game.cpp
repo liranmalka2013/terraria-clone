@@ -1,8 +1,8 @@
 #include "Game.h"
 
 GameManger::GameManger() {
-    player = InitPlayer(Vector2{WIN_WIDTH/2, WIN_HEIGHT/2}, Vector2{CELL_SIZE * 0.8, CELL_SIZE * 1.3});
-
+    player = InitPlayer(Vector2{WIN_WIDTH/2, WIN_HEIGHT/4}, Vector2{CELL_SIZE * 0.8, CELL_SIZE * 1.3});
+    grid = InitializeGridChunk();
 }
 
 GameManger::~GameManger() {
@@ -10,14 +10,12 @@ GameManger::~GameManger() {
 }
 
 void GameManger::draw() {
+    drawChunk(grid);
     DrawPlayer(*player);
-    for(const Voxel voxel : grid){
-        DrawVoxel(voxel);
-    }
 }
 
 void GameManger::update() {
-    UpdatePlayer(player, grid);
+    UpdatePlayer(player);
 }
 
 void GameManger::handleInputs() {

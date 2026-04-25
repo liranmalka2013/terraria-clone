@@ -1,8 +1,12 @@
+#pragma once
+
 #include <raylib.h>
+#include <iostream>
+
 #include "consts.h"
 #include "Player.h"
 #include "GridUtils.h"
-#include "Voxel.h"
+
 
 using std::vector;
 
